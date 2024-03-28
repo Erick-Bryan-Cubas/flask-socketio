@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script>
+        socket = io()
+        socket.connect('http://127.0.0.1:5000/')
+        /* Eventos */
+        socket.on('connect', function(){
+            socket.send('User has connected!');
+        })
+        socket.on('message', function(msg){
+            console.log(msg);
+            socket.send('User has connected!');
+        })
+    </script>     
+    <title>Flask SocketIO</title>
+</head>
+<body>
+    <h1>Flask SocketIO</h1>
+    <p>Este exemplo ilustra uma aplicação Flask utilizando Flask-SocketIO para comunicação em tempo real entre o servidor e o cliente através de WebSockets. Quando um usuário se conecta à aplicação, o cliente envia automaticamente uma mensagem "User has connected!" para o servidor via WebSocket.</p>
+    <p>Do lado do servidor, ao receber uma mensagem, ele responde enviando um elemento da lista pré-definida (contendo 'apple', 'peas', 'juice', 'orange') de volta para o cliente. Cada mensagem recebida resulta no envio do próximo item da lista, até que todos os elementos sejam enviados.</p>
+    <p>Este processo demonstra como estabelecer uma conexão bidirecional entre o cliente e o servidor, permitindo a troca de mensagens em tempo real. A aplicação utiliza eventos específicos para lidar com a conexão e a comunicação, o que é fundamental para aplicações interativas em tempo real.</p>
+</body>
+</html>
